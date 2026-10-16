@@ -434,10 +434,35 @@
     .discord-avatar-row {
       display: flex;
       align-items: flex-end;
+      justify-content: space-between;
       margin-top: -48px;
       margin-bottom: 14px;
       position: relative;
       z-index: 6;
+    }
+
+    .mini-btn.discord-dm {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 12px;
+      background: rgba(88, 101, 242, 0.2);
+      border: 1px solid rgba(88, 101, 242, 0.55);
+      color: #818cf8;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mini-btn.discord-dm:hover {
+      background: #5865F2;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
     }
 
     .avatar-wrapper {
@@ -906,6 +931,12 @@
               <!-- Canlı Durum Noktası -->
               <span class="status-indicator online" id="statusDot" title="Çevrimiçi"></span>
             </div>
+
+            <!-- DM Butonu -->
+            <a href="https://discord.com/users/473260674609446922" target="_blank" class="mini-btn discord-dm" rel="noopener noreferrer" title="Discord'dan DM Gönder">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>DM</span>
+            </a>
           </div>
 
           <!-- Kullanıcı İsimleri -->
