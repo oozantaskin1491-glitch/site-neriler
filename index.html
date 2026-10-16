@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Xentora Digital | Yetkili Satış ve Hizmet Ağı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-primary: #0284c7;
+    --blue-bright: #38bdf8;
+    --blue-glow: rgba(56, 189, 248, 0.45);
+    --blue-deep: #0369a1;
+    --bg-dark: #05070c;
+    --bg-card: rgba(13, 17, 26, 0.82);
+    --border-card: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(56, 189, 248, 0.5);
+    --text-white: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ══ 1. ARKA PLAN VİDEO VE SİBER KATMANLAR ══ */
+  .video-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .video-bg-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.38) contrast(1.15) saturate(1.2);
+    transform: scale(1.05);
+  }
+
+  .video-overlay {
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 50% 15%, rgba(56, 189, 248, 0.16) 0%, transparent 65%),
+      linear-gradient(180deg, rgba(5, 7, 12, 0.6) 0%, rgba(5, 7, 12, 0.94) 100%);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .grid-pattern {
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 55px 55px;
+    pointer-events: none;
+    z-index: 1;
+    mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 85%);
+  }
+
+  #canvas-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ══ 2. ÜST SAĞ HIZLI PAYLAŞ & SES BUTONU ══ */
+  .floating-controls {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+  }
+
+  .ctrl-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba(15, 20, 32, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+  }
+
+  .ctrl-btn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--blue-bright);
+    color: var(--blue-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+  }
+
+  /* ══ 3. HERO BÖLÜMÜ ══ */
+  .hero-section {
+    position: relative;
+    z-index: 2;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 85px 24px 40px;
+  }
+
+  .brand-logo-wrapper {
+    position: relative;
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 24px;
+  }
+
+  .logo-aura {
+    position: absolute;
+    inset: -8px;
+    border-radius: 30px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.75) 0%, transparent 70%);
+    filter: blur(16px);
+    animation: auraPulse 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes auraPulse {
+    from { opacity: 0.6; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1.1); }
+  }
+
+  .brand-logo-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+    object-fit: cover;
+    border: 1.5px solid rgba(56, 189, 248, 0.5);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.75), 0 0 30px rgba(56, 189, 248, 0.4);
+    background: #0b0f19;
+    transition: transform 0.3s;
+  }
+
+  .brand-logo-wrapper:hover .brand-logo-img {
+    transform: scale(1.05) rotate(1deg);
+  }
+
+  /* Canlı Nabız Rozeti */
+  .badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--blue-bright);
+    margin-bottom: 22px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    animation: beacon 1.8s infinite;
+  }
+
+  @keyframes beacon {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  .hero-title {
+    font-size: 62px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+
+  .hero-title .glow-name {
+    background: linear-gradient(90deg, #fff 0%, var(--blue-bright) 35%, #fff 70%, #60a5fa 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 5s linear infinite;
+    filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.5));
+  }
+
+  @keyframes shineText {
+    to { background-position: 200% center; }
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #cbd5e1;
+    max-width: 640px;
+    margin: 0 auto 38px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .btn-blue {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #38bdf8 0%, #2563eb 50%, #1d4ed8 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .btn-blue:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 45px rgba(56, 189, 248, 0.65);
+  }
+
+  .btn-discord {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 32px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .btn-discord:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+  }
+
+  /* ══ 4. İSTATİSTİK SAYACI (METRİK BARI) ══ */
+  .metrics-strip {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+  }
+
+  .metric-item {
+    text-align: center;
+  }
+
+  .metric-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--blue-bright);
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    margin-bottom: 2px;
+  }
+
+  .metric-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  /* ══ 5. MAĞAZALAR LİSTESİ (3D TİLT VE SPOTLİGHT) ══ */
+  .section-stores {
+    position: relative;
+    z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 50px 24px 90px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 45px;
+  }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 8px;
+  }
+
+  .section-main-title {
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .stores-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+    perspective: 1000px;
+  }
+
+  .market-card {
+    flex: 1 1 calc(33.333% - 22px);
+    min-width: 320px;
+    max-width: 390px;
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), 
+                box-shadow 0.25s ease, 
+                border-color 0.25s ease;
+  }
+
+  /* Dinamik Takip Eden Işık */
+  .market-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .market-card:hover::before {
+    opacity: 1;
+  }
+
+  .market-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 35px rgba(56, 189, 248, 0.25);
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .icon-discord { background: linear-gradient(135deg, #5865F2, #3742fa); color: #fff; }
+  .icon-itemsatis { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
+  .icon-hesap { background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; }
+  .icon-guard { background: linear-gradient(135deg, #059669, #047857); color: #fff; }
+  .icon-tasarim { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
+
+  .card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .card-info p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-arrow {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+  .card-arrow svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    fill: none;
+  }
+
+  .market-card:hover .card-arrow {
+    background: rgba(56, 189, 248, 0.25);
+    border-color: var(--blue-bright);
+    color: var(--blue-bright);
+    transform: translateX(4px);
+  }
+
+  /* ══ 6. FOOTER ══ */
+  .footer {
+    position: relative;
+    z-index: 2;
+    background: #040508;
+    padding: 50px 24px 30px;
+    border-top: 1px solid var(--border-card);
+  }
+
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-brand-title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-brand-title span {
+    color: var(--blue-bright);
+  }
+
+  /* Toast Bildirimi */
+  .toast-notice {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(90px);
+    background: rgba(14, 18, 28, 0.95);
+    border: 1px solid var(--border-hover);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    font-weight: 700;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.35);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  }
+
+  .toast-notice.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Tıklama Kıvılcım Patlaması */
+  .spark {
+    position: fixed;
+    pointer-events: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue-bright);
+    box-shadow: 0 0 12px var(--blue-bright);
+    z-index: 99999;
+    animation: flySpark 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  }
+
+  @keyframes flySpark {
+    to {
+      transform: translate(var(--tx), var(--ty)) scale(0);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .hero-title { font-size: 40px; }
+    .market-card { flex: 1 1 100%; max-width: 100%; }
+    .hero-buttons { flex-direction: column; width: 100%; max-width: 320px; }
+    .metrics-strip { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Video Arka Plan -->
+  <div class="video-bg-container">
+    <video autoplay muted loop playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-charts-and-data-31913-large.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="video-overlay"></div>
+  <div class="grid-pattern"></div>
+  <canvas id="canvas-particles"></canvas>
+
+  <!-- Sağ Üst Butonlar (Ses & Paylaş) -->
+  <div class="floating-controls">
+    <button class="ctrl-btn" id="audioToggleBtn" title="Sesi Aç/Kapat" onclick="toggleAudio()">
+      🔊
+    </button>
+    <button class="ctrl-btn" title="Bağlantıyı Kopyala" onclick="copySiteLink()">
+      🔗
+    </button>
+  </div>
+
+  <!-- Hero Bölümü -->
+  <section class="hero-section">
+    <div class="brand-logo-wrapper">
+      <div class="logo-aura"></div>
+      <img src="logo.jpg" onerror="this.onerror=null; this.src='logo.png';" alt="Xentora Digital Logo" class="brand-logo-img">
+    </div>
+
+    <div class="badge-tag">
+      <span class="pulse-dot"></span>
+      <span>7/24 Aktif & Otomatik Teslimat</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="glow-name">Xentora Digital</span>'e<br>Hoş Geldiniz!
+    </h1>
+
+    <p class="hero-desc">
+      Dijital dünyadaki tüm ihtiyaçlarınız için tek adres.
+      Hızlı teslimat, şeffaf hizmet ve %100 güvenli alışveriş
+      sadece Xentora Digital güvencesiyle!
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#magazalar" class="btn-blue" onclick="playBeep(880, 0.08)">
+        <span>Mağazaları Keşfet</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://discord.com/invite/6KB3xMwK9e" class="btn-discord" target="_blank" rel="noopener noreferrer" onclick="playBeep(640, 0.08)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span>Discord Sunucumuz</span>
+      </a>
+    </div>
+
+    <!-- İstatistik Şeridi -->
+    <div class="metrics-strip">
+      <div class="metric-item">
+        <div class="metric-num">15,000+</div>
+        <div class="metric-label">Başarılı Sipariş</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">%99.9</div>
+        <div class="metric-label">Müşteri Memnuniyeti</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-num">&lt; 60 Sn</div>
+        <div class="metric-label">Otomatik Teslimat</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mağazalar Grid (5 Kart) -->
+  <section class="section-stores" id="magazalar">
+    <div class="section-header">
+      <div class="section-eyebrow">RESMİ KANALLARIMIZ</div>
+      <h2 class="section-main-title">Yetkili Satış & Hizmet Ağımız</h2>
+    </div>
+
+    <div class="stores-grid">
+      <!-- 1. Discord -->
+      <a href="https://discord.com/invite/6KB3xMwK9e" class="market-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon icon-discord">
+          <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </div>
+        <div class="card-info">
+          <h3>Discord Topluluğumuz</h3>
+          <p>Topluluğumuza katıl, çekilişleri ve fırsatları kaçırma!</p>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 2. İtemsatış -->
+      <a href="https://www.itemsatis.com/p/Xentora" class="market-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon icon-itemsatis">
+          <svg viewBox="0 0 24 24"><path d="M5 4C4.44772 4 4 4.44772 4 5V19C4 19.5523 4.44772 20 5 20H8.5V13H15.5V20H19C19.5523 20 20 19.5523 20 19V5C20 4.44772 19.5523 4 19 4H5Z"/></svg>
+        </div>
+        <div class="card-info">
+          <h3>İtemsatış Mağazamız</h3>
+          <p>Türkiye'nin lider pazar yerindeki resmi yetkili profilimiz.</p>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 3. Hesap.com.tr -->
+      <a href="https://hesap.com.tr/u/xentora" class="market-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon icon-hesap">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L15 7.5L12 9.5L9 7.5L12 2Z"/>
+            <path d="M5.5 8L8 9.5L7 15L4.5 13L5.5 8Z"/>
+            <path d="M18.5 8L19.5 13L17 15L16 9.5L18.5 8Z"/>
+            <path d="M10.8 11.2H13.2V22H10.8V11.2Z"/>
+          </svg>
+        </div>
+        <div class="card-info">
+          <h3>Hesap.com.tr Mağazamız</h3>
+          <p>Güvenilir hesap, lisans ve dijital ürünler.</p>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 4. Guard Sitemiz -->
+      <a href="https://xentora.digital/" class="market-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon icon-guard">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <div class="card-info">
+          <h3>Guard Sitemiz</h3>
+          <p>xentora.digital resmi güvenlik ve koruma sistemimiz.</p>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- 5. Tasarım Mağazamız -->
+      <a href="https://xentora.xyz/" class="market-card" target="_blank" rel="noopener noreferrer">
+        <div class="card-icon icon-tasarim">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12c0 5.51 4.49 10 10 10 1.1 0 2-.9 2-2 0-.49-.18-.94-.48-1.3-.29-.35-.48-.8-.48-1.3 0-1.1.9-2 2-2h2.39c3.08 0 5.57-2.49 5.57-5.57 0-5.42-4.89-9.83-11-9.83zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 8 6.5 8s1.5.67 1.5 1.5S7.33 11 6.5 11zm3-4C8.67 7 8 6.33 8 5.5S8.67 4 9.5 4s1.5.67 1.5 1.5S10.33 7 9.5 7zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 4 14.5 4s1.5.67 1.5 1.5S15.33 7 14.5 7zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 8 17.5 8s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        </div>
+        <div class="card-info">
+          <h3>Tasarım Mağazamız</h3>
+          <p>xentora.xyz profesyonel grafik, UI & özel tasarım hizmeti.</p>
+        </div>
+        <div class="card-arrow">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand-title">Xentora<span>Digital</span></div>
+      <p style="font-size: 13.5px; color: var(--text-dim);">
+        Tüm hakları saklıdır &copy; 2026. Kurumsal dijital çözümler.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bildirim Toast -->
+  <div class="toast-notice" id="toastBox">
+    <span>⚡</span>
+    <span id="toastMsg">Bağlantı panoya kopyalandı!</span>
+  </div>
+
+  <script>
+    // ══ 1. SİBER SES MOTORU (Web Audio API) ══
+    let audioCtx = null;
+    let audioActive = true;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playBeep(freq = 600, duration = 0.08) {
+      if (!audioActive) return;
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function toggleAudio() {
+      audioActive = !audioActive;
+      const btn = document.getElementById('audioToggleBtn');
+      btn.textContent = audioActive ? '🔊' : '🔇';
+      showToast(audioActive ? 'Sistem sesleri açıldı' : 'Sistem sesleri kapatıldı');
+      if (audioActive) playBeep(880, 0.1);
+    }
+
+    // ══ 2. 3D TİLT VE SPOTLİGHT KART HAREKETİ ══
+    document.querySelectorAll('.market-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        // 3D Tilt Açısı
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotX = ((y - centerY) / centerY) * -8;
+        const rotY = ((x - centerX) / centerX) * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseenter', () => {
+        playBeep(520, 0.05);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+
+    // ══ 3. TIKLAMA KIVILCIM PATLAMASI ══
+    document.addEventListener('click', e => {
+      playBeep(940, 0.08);
+      for (let i = 0; i < 12; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'spark';
+        spark.style.left = e.clientX + 'px';
+        spark.style.top = e.clientY + 'px';
+        
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 30 + Math.random() * 45;
+        spark.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+        spark.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+        
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 550);
+      }
+    });
+
+    // ══ 4. PAYLAŞ / TOAST BİLDİRİMİ ══
+    function showToast(text) {
+      const toast = document.getElementById('toastBox');
+      document.getElementById('toastMsg').textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+
+    function copySiteLink() {
+      navigator.clipboard.writeText(window.location.href);
+      playBeep(1040, 0.1);
+      showToast('Bağlantı panoya kopyalandı! 📋');
+    }
+
+    // ══ 5. ARKA PLAN YILDIZ CANVAS ══
+    const canvas = document.getElementById('canvas-particles');
+    const ctx = canvas.getContext('2d');
+    let pts = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 40; i++) {
+      pts.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 2 + 0.6
+      });
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.45)';
+
+      pts.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(render);
+    }
+    render();
+  </script>
+</body>
+</html>
