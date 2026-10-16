@@ -740,8 +740,11 @@
 
   </div>
 
-  <!-- YouTube Arka Plan Müzik Oynatıcısı (Gizli) -->
-  <div id="youtubePlayer" style="position: fixed; top: -9999px; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
+  <!-- HTML5 Yerel Arka Plan Müzik Çalar (Kesintisiz & Hızlı) -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="music.m4a" type="audio/mp4">
+    <source src="music.webm" type="audio/webm">
+  </audio>
 
   <!-- Sağ Alttaki Şık Müzik Kontrol Çubuğu -->
   <button class="music-pill paused" id="musicToggle" title="Müziği Başlat / Duraklat">
@@ -752,11 +755,8 @@
       <span class="bar"></span>
     </div>
     <span class="music-title">Tame Impala - Loser</span>
-    <i class="fa-solid fa-volume-xmark" id="musicIcon"></i>
+    <i class="fa-solid fa-play" id="musicIcon"></i>
   </button>
-
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
 
   <script>
     // Smooth Scroll
@@ -789,75 +789,53 @@
       });
     });
 
-    // Arka Plan Müziği Yönetimi (YouTube IFrame API)
-    let ytPlayer = null;
-    let isPlaying = false;
+    // Yerel Arka Plan Müziği (HTML5 Audio)
+    const audio = document.getElementById('bgAudio');
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = document.getElementById('musicIcon');
 
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('youtubePlayer', {
-        videoId: 'LGLS4ARe-vw',
-        playerVars: {
-          autoplay: 1,
-          loop: 1,
-          playlist: 'LGLS4ARe-vw',
-          controls: 0,
-          showinfo: 0,
-          rel: 0,
-          enablejsapi: 1,
-          playsinline: 1
-        },
-        events: {
-          onReady: (event) => {
-            event.target.setVolume(18); // Kısık ses seviyesi (%18)
-            const p = event.target.playVideo();
-            if (p && typeof p.catch === 'function') {
-              p.catch(() => {
-                // Tarayıcı autoplay engelini bekliyor
-              });
-            }
-          },
-          onStateChange: (event) => {
-            if (event.data === YT.PlayerState.PLAYING) {
-              isPlaying = true;
-              musicToggle.classList.remove('paused');
-              musicToggle.classList.add('playing');
-              musicIcon.className = 'fa-solid fa-volume-high';
-            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-              isPlaying = false;
-              musicToggle.classList.remove('playing');
-              musicToggle.classList.add('paused');
-              musicIcon.className = 'fa-solid fa-volume-xmark';
-            }
-          }
-        }
-      });
-    }
+    // Kısık ses seviyesi (%15)
+    audio.volume = 0.15;
 
-    // Tarayıcıların otomatik ses çalma engelini aşmak için sayfaya ilk dokunuşta/tıklamada müziği garanti başlat
-    function startMusicOnFirstGesture() {
-      if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-        ytPlayer.setVolume(18);
-        ytPlayer.playVideo();
+    function updateMusicState(playing) {
+      if (playing) {
+        musicToggle.classList.remove('paused');
+        musicToggle.classList.add('playing');
+        musicIcon.className = 'fa-solid fa-volume-high';
+      } else {
+        musicToggle.classList.remove('playing');
+        musicToggle.classList.add('paused');
+        musicIcon.className = 'fa-solid fa-play';
       }
     }
-    ['click', 'touchstart', 'scroll'].forEach(evt => {
-      window.addEventListener(evt, startMusicOnFirstGesture, { once: true });
+
+    // Kullanıcının sayfadaki ilk etkileşiminde (tıklama, kaydırma, dokunma) müziği başlat
+    function tryStartMusic() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          updateMusicState(true);
+        }).catch(() => {});
+      }
+    }
+    ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, tryStartMusic, { once: true });
     });
 
     // Müzik Çubuğu Tıklama Olayı (Aç/Kapat)
     musicToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (!ytPlayer || typeof ytPlayer.playVideo !== 'function') return;
-      
-      if (isPlaying) {
-        ytPlayer.pauseVideo();
+      if (audio.paused) {
+        audio.play().then(() => {
+          updateMusicState(true);
+        }).catch(err => console.log('Audio play error:', err));
       } else {
-        ytPlayer.setVolume(18);
-        ytPlayer.playVideo();
+        audio.pause();
+        updateMusicState(false);
       }
     });
+
+    audio.addEventListener('play', () => updateMusicState(true));
+    audio.addEventListener('pause', () => updateMusicState(false));
   </script>
 </body>
 </html>
