@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: site-neriler
+    env: static
+    buildCommand: ""
+    staticPublishPath: ./
