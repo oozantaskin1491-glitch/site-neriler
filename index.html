@@ -1,0 +1,784 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xentora Digital'e Hoş Geldiniz!</title>
+  
+  <!-- Fontlar & İkon Kütüphanesi -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.45);
+      --accent: #2563eb;
+      --bg-dark: #020617;
+      --card-bg: rgba(15, 23, 42, 0.72);
+      --card-border: rgba(56, 189, 248, 0.16);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 70px;
+    }
+
+    /* Büyüleyici Arka Plan Katmanları */
+    .bg-nebula-top {
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.28) 0%, rgba(37, 99, 235, 0.16) 45%, transparent 70%);
+      filter: blur(80px);
+      z-index: -2;
+      pointer-events: none;
+      animation: floatNebula 12s ease-in-out infinite alternate;
+    }
+
+    .bg-nebula-bottom {
+      position: fixed;
+      bottom: -10%;
+      right: 5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(139, 92, 246, 0.08) 50%, transparent 70%);
+      filter: blur(90px);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .video-bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      overflow: hidden;
+    }
+
+    .video-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.22) contrast(1.3) saturate(1.2);
+    }
+
+    #particlesCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Ana Konteyner */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Hero Bölümü */
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 75px;
+    }
+
+    /* Logo Kutusu */
+    .logo-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-ambient {
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(37, 99, 235, 0.3) 60%, transparent 80%);
+      filter: blur(20px);
+      animation: pulseGlow 4s infinite alternate;
+    }
+
+    .logo-box {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85));
+      border: 2px solid rgba(56, 189, 248, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(56, 189, 248, 0.4);
+      backdrop-filter: blur(12px);
+      transition: all 0.4s ease;
+    }
+
+    .logo-box:hover {
+      transform: scale(1.05);
+      border-color: #38bdf8;
+      box-shadow: 0 0 45px rgba(56, 189, 248, 0.7);
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Ana Başlık */
+    .hero-title {
+      font-size: 3.4rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: #ffffff;
+      margin-bottom: 32px;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-title .brand-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.5));
+    }
+
+    /* Butonlar Grubu */
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #2563eb, #0284c7);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.6);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.8), 0 0 20px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Mağazalar Başlığı */
+    .section-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    /* Kartlar Grid Düzeni */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .cards-grid-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 730px;
+      margin: 0 auto;
+    }
+
+    /* Kurumsal Kart Tasarımı */
+    .store-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
+      text-decoration: none;
+      color: var(--text-main);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Kart Üzerinde Mouse Feneri */
+    .store-card::before {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, -100px);
+      left: var(--mouse-x, -100px);
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, var(--spot-color, rgba(56, 189, 248, 0.25)) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .store-card:hover::before {
+      opacity: 1;
+    }
+
+    .store-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 16px 35px -5px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.25);
+    }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* Squircle İkon Kutusu */
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      flex-shrink: 0;
+      transition: all 0.35s ease;
+      box-shadow: 0 8px 20px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    .store-card:hover .card-icon {
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    /* Orijinal Renkler ve Gölgeler */
+    .bg-discord {
+      background: #5865F2;
+      box-shadow: 0 8px 20px -4px rgba(88, 101, 242, 0.5);
+    }
+    .bg-itemsatis {
+      background: #ea384d;
+      box-shadow: 0 8px 20px -4px rgba(234, 56, 77, 0.55);
+    }
+    .bg-hesap {
+      background: #0284c7;
+      box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.55);
+    }
+    .bg-guard {
+      background: #10b981;
+      box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.55);
+    }
+    .bg-tasarim {
+      background: #8b5cf6;
+      box-shadow: 0 8px 20px -4px rgba(139, 92, 246, 0.55);
+    }
+
+    .card-info h3 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .card-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 175px;
+    }
+
+    /* Sağdaki Yuvarlak Ok Butonu */
+    .arrow-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .store-card:hover .arrow-btn {
+      background: #38bdf8;
+      color: #030712;
+      border-color: #38bdf8;
+      transform: translateX(4px);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+    }
+
+    /* Ses Kontrol Butonu */
+    .sound-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: all 0.3s;
+    }
+
+    .sound-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    }
+
+    /* Animasyonlar */
+    @keyframes pulseGlow {
+      0% { transform: scale(0.95); opacity: 0.4; }
+      100% { transform: scale(1.15); opacity: 0.8; }
+    }
+
+    @keyframes floatNebula {
+      0% { transform: translateX(-50%) translateY(0); }
+      100% { transform: translateX(-50%) translateY(30px); }
+    }
+
+    /* Mobil Düzen */
+    @media (max-width: 900px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .cards-grid-bottom {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+      .card-info p {
+        max-width: none;
+      }
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Kozmik Işık & Nebula Arka Planı -->
+  <div class="bg-nebula-top"></div>
+  <div class="bg-nebula-bottom"></div>
+
+  <!-- Video Katmanı -->
+  <div class="video-bg-container">
+    <video class="video-bg" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-technology-animation-31224-large.mp4" type="video/mp4">
+    </video>
+  </div>
+  <canvas id="particlesCanvas"></canvas>
+  <div class="grid-overlay"></div>
+
+  <div class="container">
+
+    <!-- Hero Bölümü -->
+    <div class="hero">
+      
+      <!-- Logo Kutusu -->
+      <div class="logo-container">
+        <div class="logo-ambient"></div>
+        <div class="logo-box">
+          <img src="logo.png" alt="Xentora Digital Logo" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Xentora+Digital&background=0284c7&color=fff&size=128&bold=true';">
+        </div>
+      </div>
+
+      <!-- Başlık -->
+      <h1 class="hero-title">
+        Xentora <span class="brand-gradient">Digital</span>'e<br>Hoş Geldiniz!
+      </h1>
+
+      <!-- Butonlar -->
+      <div class="hero-actions">
+        <a href="#magazalar" class="btn-primary" id="exploreBtn">
+          <span>Mağazaları Keşfet</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="https://discord.com/invite/6KB3xMwK9e" target="_blank" class="btn-secondary" rel="noopener noreferrer">
+          <i class="fa-brands fa-discord"></i>
+          <span>Discord Sunucumuz</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Mağazalar Başlığı -->
+    <div class="section-header" id="magazalar">
+      <span class="section-tag">RESMİ KANALLARIMIZ</span>
+      <h2 class="section-title">Yetkili Satış & Hizmet Ağımız</h2>
+    </div>
+
+    <!-- Üst Satır: 3 Kart -->
+    <div class="cards-grid">
+      
+      <!-- 1. Discord -->
+      <a href="https://discord.com/invite/6KB3xMwK9e" target="_blank" class="store-card" rel="noopener noreferrer" style="--spot-color: rgba(88, 101, 242, 0.3);">
+        <div class="card-left">
+          <div class="card-icon bg-discord">
+            <i class="fa-brands fa-discord" style="font-size: 1.5rem;"></i>
+          </div>
+          <div class="card-info">
+            <h3>Discord Topluluğumuz</h3>
+            <p>Topluluğumuza katıl, çekilişleri ve ...</p>
+          </div>
+        </div>
+        <div class="arrow-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- 2. İtemsatış (Resimdeki Orijinal Kapı/Portal Simgesi) -->
+      <a href="https://www.itemsatis.com/p/Xentora" target="_blank" class="store-card" rel="noopener noreferrer" style="--spot-color: rgba(234, 56, 77, 0.35);">
+        <div class="card-left">
+          <div class="card-icon bg-itemsatis">
+            <!-- İtemsatış Orijinal Vektörel Logosu -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4 6C4 4 5.5 2.5 7.5 2.5h9C18.5 2.5 20 4 20 6v14.5c0 .6-.4 1-1 1h-3.5c-.6 0-1-.4-1-1V14c0-.6-.4-1-1-1h-3c-.6 0-1 .4-1 1v6.5c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1V6z"/>
+            </svg>
+          </div>
+          <div class="card-info">
+            <h3>İtemsatış Mağazamız</h3>
+            <p>Türkiye'nin lider pazar yerindeki re...</p>
+          </div>
+        </div>
+        <div class="arrow-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- 3. Hesap.com.tr (Resmi Çatal/Trident Simgesi) -->
+      <a href="https://hesap.com.tr/u/xentora" target="_blank" class="store-card" rel="noopener noreferrer" style="--spot-color: rgba(2, 132, 199, 0.35);">
+        <div class="card-left">
+          <div class="card-icon bg-hesap">
+            <!-- Hesap.com.tr Orijinal Vektörel Logosu -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="4" r="2.2"/>
+              <path d="M10.8 7.5h2.4v13h-2.4z"/>
+              <circle cx="6.5" cy="8" r="1.8"/>
+              <circle cx="17.5" cy="8" r="1.8"/>
+              <path d="M5.5 11v1.5c0 3.2 2.8 5.5 6.5 5.5s6.5-2.3 6.5-5.5V11h-2v1.5c0 2-2 3.5-4.5 3.5s-4.5-1.5-4.5-3.5V11h-2z"/>
+            </svg>
+          </div>
+          <div class="card-info">
+            <h3>Hesap.com.tr Mağazamız</h3>
+            <p>Güvenilir hesap, lisans ve dijital ür...</p>
+          </div>
+        </div>
+        <div class="arrow-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Alt Satır: 2 Kart -->
+    <div class="cards-grid-bottom">
+      
+      <!-- 4. Guard Sitemiz (Kurumsal Kalkan Simgesi) -->
+      <a href="https://xentora.digital/" target="_blank" class="store-card" rel="noopener noreferrer" style="--spot-color: rgba(16, 185, 129, 0.35);">
+        <div class="card-left">
+          <div class="card-icon bg-guard">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="card-info">
+            <h3>Guard Sitemiz</h3>
+            <p>xentora.digital resmi güvenlik ve k...</p>
+          </div>
+        </div>
+        <div class="arrow-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- 5. Tasarım Mağazamız (Kurumsal Dijital Tasarım Vektör Kalemi) -->
+      <a href="https://xentora.xyz/" target="_blank" class="store-card" rel="noopener noreferrer" style="--spot-color: rgba(139, 92, 246, 0.35);">
+        <div class="card-left">
+          <div class="card-icon bg-tasarim">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+              <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+              <path d="m2 2 7.586 7.586"/>
+              <circle cx="11" cy="11" r="1.8"/>
+            </svg>
+          </div>
+          <div class="card-info">
+            <h3>Tasarım Mağazamız</h3>
+            <p>xentora.xyz profesyonel grafik, UI ...</p>
+          </div>
+        </div>
+        <div class="arrow-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- Ses Aç/Kapat Butonu -->
+  <button class="sound-toggle" id="soundToggle" title="Siber Sesleri Aç/Kapat">
+    <i class="fa-solid fa-volume-high" id="soundIcon"></i>
+  </button>
+
+  <script>
+    // Smooth Scroll
+    document.getElementById('exploreBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('magazalar').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Spotlight Mouse Feneri
+    document.querySelectorAll('.store-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // Siber Ses Sentezleyici
+    let audioEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.08) {
+      if (!audioEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    document.querySelectorAll('.store-card, .btn-primary, .btn-secondary').forEach(el => {
+      el.addEventListener('mouseenter', () => playTone(720, 'sine', 0.06));
+      el.addEventListener('click', () => playTone(980, 'triangle', 0.12));
+    });
+
+    const soundToggle = document.getElementById('soundToggle');
+    const soundIcon = document.getElementById('soundIcon');
+
+    soundToggle.addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      if (audioEnabled) {
+        soundIcon.className = 'fa-solid fa-volume-high';
+        soundToggle.style.color = '#38bdf8';
+        playTone(750, 'sine', 0.08);
+      } else {
+        soundIcon.className = 'fa-solid fa-volume-xmark';
+        soundToggle.style.color = '#64748b';
+      }
+    });
+
+    // Tıklamada Mavi Siber Kıvılcım Efekti
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 7; i++) {
+        const spark = document.createElement('div');
+        spark.style.position = 'fixed';
+        spark.style.width = '4px';
+        spark.style.height = '4px';
+        spark.style.background = '#38bdf8';
+        spark.style.borderRadius = '50%';
+        spark.style.pointerEvents = 'none';
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
+        spark.style.zIndex = '9999';
+        spark.style.boxShadow = '0 0 10px #38bdf8';
+        spark.style.transition = 'all 0.5s cubic-bezier(0.1, 0.8, 0.3, 1)';
+        document.body.appendChild(spark);
+
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 25 + Math.random() * 45;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+
+        requestAnimationFrame(() => {
+          spark.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
+          spark.style.opacity = '0';
+        });
+
+        setTimeout(() => spark.remove(), 550);
+      }
+    });
+
+    // Kozmik Parçacıklar (Canvas)
+    const canvas = document.getElementById('particlesCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 45; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.8 + 0.6,
+        alpha: Math.random() * 0.6 + 0.2,
+        speedY: Math.random() * 0.4 + 0.1,
+        speedX: (Math.random() - 0.5) * 0.3
+      });
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#38bdf8';
+
+      particles.forEach(p => {
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.y -= p.speedY;
+        p.x += p.speedX;
+
+        if (p.y < 0) {
+          p.y = canvas.height;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
+</body>
+</html>
