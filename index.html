@@ -78,13 +78,13 @@
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 35px 24px 20px;
+      padding: 40px 24px 20px;
       position: relative;
       z-index: 10;
     }
 
     /* =========================================
-       HERO BÖLÜMÜ
+       HERO BÖLÜMÜ (LOGOSUZ - NET & ŞIK)
        ========================================= */
     .hero {
       text-align: center;
@@ -95,59 +95,13 @@
       animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .logo-container {
-      position: relative;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-ambient {
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(37, 99, 235, 0.15) 60%, transparent 80%);
-      filter: blur(18px);
-      pointer-events: none;
-    }
-
-    .logo-box {
-      width: 95px;
-      height: 95px;
-      border-radius: 50%;
-      background: rgba(11, 19, 36, 0.95);
-      border: 2px solid rgba(56, 189, 248, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.3);
-      backdrop-filter: blur(16px);
-      transition: all 0.35s ease;
-    }
-
-    .logo-box:hover {
-      transform: scale(1.06);
-      border-color: #38bdf8;
-      box-shadow: 0 0 40px rgba(56, 189, 248, 0.6);
-    }
-
-    .logo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
     .hero-title {
-      font-size: 3.1rem;
+      font-size: 3.3rem;
       font-weight: 900;
       line-height: 1.15;
       letter-spacing: -1px;
       color: #ffffff;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       text-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
     }
 
@@ -168,13 +122,13 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 26px;
+      padding: 13px 28px;
       border-radius: 14px;
       background: linear-gradient(135deg, #2563eb, #0284c7);
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.6);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -189,14 +143,14 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 24px;
+      padding: 13px 26px;
       border-radius: 14px;
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.14);
       color: #f8fafc;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       backdrop-filter: blur(14px);
       transition: all 0.3s ease;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -216,335 +170,11 @@
     }
 
     /* =========================================
-       GUNS.LOL TARZI DISCORD PROFİL KARTI
-       ========================================= */
-    .discord-profile-section {
-      max-width: 680px;
-      margin: 0 auto 40px;
-      perspective: 1000px;
-    }
-
-    .discord-card {
-      position: relative;
-      border-radius: 24px;
-      background: rgba(13, 20, 36, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      overflow: hidden;
-      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(88, 101, 242, 0.18);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-
-    .discord-card:hover {
-      border-color: rgba(88, 101, 242, 0.5);
-      box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.9), 0 0 45px rgba(88, 101, 242, 0.35);
-    }
-
-    /* Discord Banner */
-    .discord-banner {
-      width: 100%;
-      height: 120px;
-      background: #111827;
-      background-image: url('https://cdn.discordapp.com/banners/473260674609446922/a_bf27b85462ff9f12aa784c34dd76640c.gif?size=600');
-      background-size: cover;
-      background-position: center;
-      position: relative;
-    }
-
-    .discord-banner::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(13, 20, 36, 0.95) 100%);
-    }
-
-    /* Rozetler (Banner Üstü) */
-    .discord-badges-bar {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 5;
-      background: rgba(0, 0, 0, 0.55);
-      padding: 6px 12px;
-      border-radius: 100px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-    }
-
-    .discord-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .discord-badge:hover {
-      transform: scale(1.2);
-    }
-
-    .discord-badge img, .discord-badge svg {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    /* Profil Gövdesi */
-    .discord-body {
-      padding: 0 24px 22px;
-      position: relative;
-    }
-
-    .discord-avatar-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-top: -46px;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 6;
-    }
-
-    .avatar-wrapper {
-      position: relative;
-      width: 86px;
-      height: 86px;
-    }
-
-    .avatar-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 4px solid #0d1424;
-      background: #0d1424;
-      object-fit: cover;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Discord Avatar Dekorasyonu */
-    .avatar-decoration {
-      position: absolute;
-      top: -12%;
-      left: -12%;
-      width: 124%;
-      height: 124%;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    /* Durum Noktası (Online / DND / Idle / Offline) */
-    .status-indicator {
-      position: absolute;
-      bottom: 4px;
-      right: 4px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 3.5px solid #0d1424;
-      background: #23a55a;
-      z-index: 3;
-      box-shadow: 0 0 10px rgba(35, 165, 90, 0.6);
-      transition: background-color 0.3s;
-    }
-
-    .status-indicator.online { background: #23a55a; box-shadow: 0 0 10px rgba(35, 165, 90, 0.6); }
-    .status-indicator.idle { background: #f0b232; box-shadow: 0 0 10px rgba(240, 178, 50, 0.6); }
-    .status-indicator.dnd { background: #f23f43; box-shadow: 0 0 10px rgba(242, 63, 67, 0.6); }
-    .status-indicator.offline { background: #80848e; box-shadow: none; }
-
-    /* Hızlı Aksiyon Butonları */
-    .profile-action-btns {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .mini-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 7px 14px;
-      border-radius: 10px;
-      background: rgba(30, 41, 59, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #e2e8f0;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .mini-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: #38bdf8;
-      color: #38bdf8;
-      transform: translateY(-2px);
-    }
-
-    .mini-btn.discord-join {
-      background: rgba(88, 101, 242, 0.2);
-      border-color: rgba(88, 101, 242, 0.5);
-      color: #818cf8;
-    }
-
-    .mini-btn.discord-join:hover {
-      background: #5865F2;
-      color: #ffffff;
-      box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
-    }
-
-    /* Kullanıcı İsimleri */
-    .discord-names {
-      margin-bottom: 14px;
-    }
-
-    .discord-global-name {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .discord-username {
-      font-size: 0.88rem;
-      color: #94a3b8;
-      font-weight: 500;
-    }
-
-    /* Özel Durum Metni */
-    .custom-status-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      margin-bottom: 14px;
-      font-size: 0.84rem;
-      color: #cbd5e1;
-    }
-
-    /* Rich Presence / Aktivite Kutusu (Spotify, Oyun, VS Code vb.) */
-    .activity-card {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .activity-card.spotify {
-      border-color: rgba(30, 215, 96, 0.35);
-      box-shadow: inset 0 0 20px rgba(30, 215, 96, 0.06);
-    }
-
-    .activity-card.game {
-      border-color: rgba(88, 101, 242, 0.35);
-      box-shadow: inset 0 0 20px rgba(88, 101, 242, 0.06);
-    }
-
-    .activity-img-wrapper {
-      position: relative;
-      width: 54px;
-      height: 54px;
-      flex-shrink: 0;
-    }
-
-    .activity-img {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-    .activity-badge-icon {
-      position: absolute;
-      bottom: -4px;
-      right: -4px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #111827;
-      border: 2px solid #111827;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-    }
-
-    .activity-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .activity-header {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #1ed760;
-      margin-bottom: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .activity-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 2px;
-    }
-
-    .activity-sub {
-      font-size: 0.8rem;
-      color: #94a3b8;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Canlı Müzik Çubuğu */
-    .spotify-wave {
-      display: flex;
-      align-items: flex-end;
-      gap: 2px;
-      height: 12px;
-    }
-
-    .spotify-wave span {
-      width: 2px;
-      background: #1ed760;
-      border-radius: 1px;
-      animation: barBounce 0.8s infinite alternate ease-in-out;
-    }
-    .spotify-wave span:nth-child(2) { animation-delay: 0.2s; }
-    .spotify-wave span:nth-child(3) { animation-delay: 0.4s; }
-
-    /* =========================================
-       MAĞAZALAR BAŞLIĞI
+       MAĞAZALAR BÖLÜM BAŞLIĞI (ÜSTTE)
        ========================================= */
     .section-header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
     .section-title {
@@ -555,7 +185,7 @@
     }
 
     /* =========================================
-       3D TILT KARTLAR (CARDS GRID)
+       3D TILT KARTLAR (CARDS GRID - ÜSTTE)
        ========================================= */
     .cards-grid {
       display: grid;
@@ -569,7 +199,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       max-width: 740px;
-      margin: 0 auto;
+      margin: 0 auto 50px;
     }
 
     .card-wrap {
@@ -752,37 +382,248 @@
       box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
     }
 
-    /* Toast Bildirimi */
-    .toast-container {
-      position: fixed;
-      top: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 9999;
-      pointer-events: none;
+    /* =========================================
+       GUNS.LOL TARZI DISCORD PROFİL KARTI (ALTA ALINDI)
+       ========================================= */
+    .discord-profile-section {
+      max-width: 600px;
+      margin: 0 auto 30px;
     }
 
-    .toast {
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid #38bdf8;
+    .discord-card {
+      position: relative;
+      border-radius: 24px;
+      background: rgba(13, 20, 36, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      overflow: hidden;
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(88, 101, 242, 0.18);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .discord-card:hover {
+      border-color: rgba(88, 101, 242, 0.5);
+      box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.9), 0 0 45px rgba(88, 101, 242, 0.35);
+    }
+
+    /* Discord Banner */
+    .discord-banner {
+      width: 100%;
+      height: 115px;
+      background: #111827;
+      background-image: url('https://cdn.discordapp.com/banners/473260674609446922/a_bf27b85462ff9f12aa784c34dd76640c.gif?size=600');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .discord-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(13, 20, 36, 0.95) 100%);
+    }
+
+    /* Profil Gövdesi */
+    .discord-body {
+      padding: 0 24px 22px;
+      position: relative;
+    }
+
+    .discord-avatar-row {
+      display: flex;
+      align-items: flex-end;
+      margin-top: -48px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 6;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 86px;
+      height: 86px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid #0d1424;
+      background: #0d1424;
+      object-fit: cover;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    .avatar-decoration {
+      position: absolute;
+      top: -12%;
+      left: -12%;
+      width: 124%;
+      height: 124%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Durum Noktası (Online / DND / Idle / Offline) */
+    .status-indicator {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3.5px solid #0d1424;
+      background: #23a55a;
+      z-index: 3;
+      box-shadow: 0 0 10px rgba(35, 165, 90, 0.6);
+      transition: background-color 0.3s;
+    }
+
+    .status-indicator.online { background: #23a55a; box-shadow: 0 0 10px rgba(35, 165, 90, 0.6); }
+    .status-indicator.idle { background: #f0b232; box-shadow: 0 0 10px rgba(240, 178, 50, 0.6); }
+    .status-indicator.dnd { background: #f23f43; box-shadow: 0 0 10px rgba(242, 63, 67, 0.6); }
+    .status-indicator.offline { background: #80848e; box-shadow: none; }
+
+    /* Kullanıcı İsimleri */
+    .discord-names {
+      margin-bottom: 12px;
+    }
+
+    .discord-global-name {
+      font-size: 1.35rem;
+      font-weight: 800;
       color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 100px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.4);
       display: flex;
       align-items: center;
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      gap: 8px;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
+    .discord-username {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-weight: 500;
     }
+
+    /* Özel Durum Metni */
+    .custom-status-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: 0.84rem;
+      color: #cbd5e1;
+    }
+
+    /* Dinamik Aktivite Kutusu (Sadece oyun veya Spotify varsa görünür) */
+    .activity-card {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: none; /* Varsayılan gizli, aktivite varsa JS açar */
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .activity-card.spotify {
+      border-color: rgba(30, 215, 96, 0.35);
+      box-shadow: inset 0 0 20px rgba(30, 215, 96, 0.08);
+      display: flex;
+    }
+
+    .activity-card.game {
+      border-color: rgba(88, 101, 242, 0.35);
+      box-shadow: inset 0 0 20px rgba(88, 101, 242, 0.08);
+      display: flex;
+    }
+
+    .activity-img-wrapper {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .activity-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .activity-badge-icon {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #111827;
+      border: 2px solid #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+    }
+
+    .activity-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .activity-header {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #1ed760;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .activity-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .activity-sub {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .spotify-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 12px;
+    }
+
+    .spotify-wave span {
+      width: 2px;
+      background: #1ed760;
+      border-radius: 1px;
+      animation: barBounce 0.8s infinite alternate ease-in-out;
+    }
+    .spotify-wave span:nth-child(2) { animation-delay: 0.2s; }
+    .spotify-wave span:nth-child(3) { animation-delay: 0.4s; }
 
     /* Müzik Kontrol Çubuğu */
     .music-pill {
@@ -874,13 +715,11 @@
     @media (max-width: 900px) {
       .container { padding-top: 25px; }
       .cards-grid { grid-template-columns: 1fr; }
-      .cards-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
+      .cards-grid-bottom { grid-template-columns: 1fr; max-width: 100%; margin-bottom: 35px; }
       .card-info p { max-width: none; }
       .hero-title { font-size: 2.3rem; }
       .hero-actions { flex-direction: column; width: 100%; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-      .discord-avatar-row { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .profile-action-btns { width: 100%; justify-content: flex-start; }
     }
 
     @media (max-width: 600px) {
@@ -895,26 +734,10 @@
   <div class="bg-image"></div>
   <div class="grid-overlay"></div>
 
-  <!-- Toast Bildirimi -->
-  <div class="toast-container">
-    <div class="toast" id="toastBox">
-      <i class="fa-solid fa-check" style="color: #38bdf8;"></i>
-      <span id="toastMsg">Kopyalandı!</span>
-    </div>
-  </div>
-
   <div class="container">
 
-    <!-- HERO BÖLÜMÜ -->
+    <!-- HERO BÖLÜMÜ (LOGOSUZ) -->
     <header class="hero">
-      
-      <div class="logo-container">
-        <div class="logo-ambient"></div>
-        <div class="logo-box" id="logoBox" title="Xentora Digital">
-          <img src="logo.png" alt="Xentora Digital Logo" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Xentora+Digital&background=0284c7&color=fff&size=140&bold=true';">
-        </div>
-      </div>
-
       <h1 class="hero-title">
         Xentora <span class="brand-gradient">Digital</span>'e<br>Hoş Geldiniz!
       </h1>
@@ -929,107 +752,14 @@
           <span>Discord Topluluğu</span>
         </a>
       </div>
-
     </header>
 
-    <!-- GUNS.LOL TARZI CANLI DISCORD PROFİL KARTI -->
-    <div class="discord-profile-section">
-      <div class="discord-card">
-        
-        <!-- Banner & Rozetler -->
-        <div class="discord-banner" id="discordBanner">
-          <div class="discord-badges-bar">
-            <!-- HypeSquad Bravery Badge -->
-            <div class="discord-badge" title="HypeSquad Bravery">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#9b59b6">
-                <path d="M12.015 2L3 7.2v9.6l9.015 5.2L21 16.8V7.2L12.015 2zm5.78 12.9l-5.78 3.33-5.78-3.33V8.77l5.78-3.33 5.78 3.33v6.13z"/>
-              </svg>
-            </div>
-            <!-- Nitro Rozeti -->
-            <div class="discord-badge" title="Discord Nitro">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#f47fff">
-                <path d="M19.44 13.1a3.86 3.86 0 0 0-2.3-3.4 3.9 3.9 0 0 0-4-3.6 4.3 4.3 0 0 0-4.3 4.2 3.8 3.8 0 0 0 .1.9A3.8 3.8 0 0 0 5 14.8a3.8 3.8 0 0 0 3.8 3.6h10.4a3.8 3.8 0 0 0 .2-5.3z"/>
-              </svg>
-            </div>
-            <!-- Topluluk Yöneticisi -->
-            <div class="discord-badge" title="Xentora Kurucusu">
-              <i class="fa-solid fa-crown" style="color: #facc15; font-size: 0.85rem;"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Gövde -->
-        <div class="discord-body">
-          <div class="discord-avatar-row">
-            <div class="avatar-wrapper">
-              <img src="https://cdn.discordapp.com/avatars/473260674609446922/7b7ba584da3182529f678bf70100b267.png?size=256" alt="Xentora Discord Avatar" class="avatar-img" id="userAvatar">
-              <!-- Discord Avatar Dekorasyonu -->
-              <img src="https://cdn.discordapp.com/avatar-decoration-presets/a_92af94f6167b9d12f8f72e6e306a5b80.png?size=256" alt="Avatar Decoration" class="avatar-decoration">
-              <!-- Canlı Durum Noktası -->
-              <span class="status-indicator online" id="statusDot" title="Çevrimiçi"></span>
-            </div>
-
-            <!-- Hızlı Kopyalama & DM Butonları -->
-            <div class="profile-action-btns">
-              <button class="mini-btn" id="copyUserBtn" title="Kullanıcı Adını Kopyala">
-                <i class="fa-regular fa-copy"></i>
-                <span id="copyUserText">.xentora</span>
-              </button>
-              <button class="mini-btn" id="copyInviteBtn" title="Sunucu Davetini Kopyala">
-                <i class="fa-solid fa-link"></i>
-                <span>Daveti Kopyala</span>
-              </button>
-              <a href="https://discord.com/users/473260674609446922" target="_blank" class="mini-btn discord-join" rel="noopener noreferrer">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>DM</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Kullanıcı İsimleri -->
-          <div class="discord-names">
-            <h2 class="discord-global-name" id="globalName">
-              Xentora
-              <span style="font-size: 0.8rem; background: rgba(88, 101, 242, 0.2); color: #818cf8; padding: 2px 8px; border-radius: 6px; font-weight: 700;">Owner</span>
-            </h2>
-            <p class="discord-username" id="usernameHandle">@.xentora</p>
-          </div>
-
-          <!-- Özel Durum Metni -->
-          <div class="custom-status-box" id="customStatusBox">
-            <span id="customStatusEmoji">⚡</span>
-            <span id="customStatusText">Xentora Digital &bull; Kalitenin Tek Adresi</span>
-          </div>
-
-          <!-- Canlı Aktivite / Rich Presence Kartı (Spotify veya Oyun) -->
-          <div class="activity-card" id="activityBox">
-            <div class="activity-img-wrapper" id="actImgWrap">
-              <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Aktivite İkonu" class="activity-img" id="actImg">
-              <span class="activity-badge-icon" id="actBadgeIcon">🟢</span>
-            </div>
-            <div class="activity-info">
-              <div class="activity-header">
-                <span id="actHeader">DİSCORD DURUMU</span>
-                <div class="spotify-wave" id="spotifyWave" style="display: none;">
-                  <span></span><span></span><span></span>
-                </div>
-              </div>
-              <p class="activity-title" id="actTitle">Discord'da Çevrimiçi</p>
-              <p class="activity-sub" id="actSub">xentora.digital &bull; 7/24 Aktif</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-    <!-- MAĞAZALAR BAŞLIĞI -->
+    <!-- MAĞAZALAR BAŞLIĞI (ÜSTTE) -->
     <section class="section-header" id="magazalar">
       <h2 class="section-title">Yetkili Satış & Hizmet Ağımız</h2>
     </section>
 
-    <!-- ÜST SATIR (3 KART) -->
+    <!-- ÜST SATIR (3 KART - ÜSTTE) -->
     <div class="cards-grid">
       
       <!-- 1. Discord -->
@@ -1106,7 +836,7 @@
 
     </div>
 
-    <!-- ALT SATIR (2 KART) -->
+    <!-- ALT SATIR (2 KART - ÜSTTE) -->
     <div class="cards-grid-bottom">
       
       <!-- 4. Guard Sitemiz -->
@@ -1159,6 +889,63 @@
 
     </div>
 
+    <!-- GUNS.LOL TARZI CANLI DISCORD PROFİL KARTI (ALTA ALINDI) -->
+    <div class="discord-profile-section">
+      <div class="discord-card">
+        
+        <!-- Banner (Sağdaki rozetler kaldırıldı) -->
+        <div class="discord-banner" id="discordBanner"></div>
+
+        <!-- Gövde -->
+        <div class="discord-body">
+          <div class="discord-avatar-row">
+            <div class="avatar-wrapper">
+              <img src="https://cdn.discordapp.com/avatars/473260674609446922/7b7ba584da3182529f678bf70100b267.png?size=256" alt="Xentora Discord Avatar" class="avatar-img" id="userAvatar">
+              <!-- Discord Avatar Dekorasyonu -->
+              <img src="https://cdn.discordapp.com/avatar-decoration-presets/a_92af94f6167b9d12f8f72e6e306a5b80.png?size=256" alt="Avatar Decoration" class="avatar-decoration">
+              <!-- Canlı Durum Noktası -->
+              <span class="status-indicator online" id="statusDot" title="Çevrimiçi"></span>
+            </div>
+          </div>
+
+          <!-- Kullanıcı İsimleri -->
+          <div class="discord-names">
+            <h2 class="discord-global-name" id="globalName">
+              Xentora
+              <span style="font-size: 0.78rem; background: rgba(88, 101, 242, 0.2); color: #818cf8; padding: 2px 8px; border-radius: 6px; font-weight: 700;">Owner</span>
+            </h2>
+            <p class="discord-username" id="usernameHandle">@.xentora</p>
+          </div>
+
+          <!-- Özel Durum Metni -->
+          <div class="custom-status-box" id="customStatusBox">
+            <span id="customStatusEmoji">⚡</span>
+            <span id="customStatusText">Xentora Digital &bull; Kalitenin Tek Adresi</span>
+          </div>
+
+          <!-- Canlı Aktivite Kutusu (Sadece oyun veya Spotify oynatılıyorsa görünür) -->
+          <div class="activity-card" id="activityBox">
+            <div class="activity-img-wrapper" id="actImgWrap">
+              <img src="logo.png" alt="Aktivite İkonu" class="activity-img" id="actImg">
+              <span class="activity-badge-icon" id="actBadgeIcon">🎮</span>
+            </div>
+            <div class="activity-info">
+              <div class="activity-header">
+                <span id="actHeader">BİR OYUN OYNUYOR</span>
+                <div class="spotify-wave" id="spotifyWave" style="display: none;">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <p class="activity-title" id="actTitle">Oyun Adı</p>
+              <p class="activity-sub" id="actSub">Detaylar</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="footer">
       <p>&copy; 2026 <strong>Xentora Digital</strong>. Tüm hakları saklıdır. &bull; <a href="https://discord.com/invite/6KB3xMwK9e" target="_blank" rel="noopener noreferrer">Bize Ulaşın</a></p>
@@ -1186,38 +973,12 @@
 
   <script>
     const DISCORD_USER_ID = "473260674609446922";
+    const GUILD_ID = "1418938638045155422";
     const DISCORD_INVITE = "6KB3xMwK9e";
 
-    // 1. Toast Bildirimi Gösterme Fonksiyonu
-    function showToast(message) {
-      const toast = document.getElementById('toastBox');
-      const msgSpan = document.getElementById('toastMsg');
-      msgSpan.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2500);
-    }
-
-    // 2. Kopyalama Butonları (Özellik 2)
-    document.getElementById('copyUserBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText('.xentora').then(() => {
-        showToast('Kullanıcı adı kopyalandı! (.xentora)');
-      }).catch(() => {
-        showToast('.xentora');
-      });
-    });
-
-    document.getElementById('copyInviteBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText('https://discord.com/invite/6KB3xMwK9e').then(() => {
-        showToast('Discord davet linki kopyalandı!');
-      }).catch(() => {
-        showToast('https://discord.com/invite/6KB3xMwK9e');
-      });
-    });
-
-    // 3. Canlı Discord Sunucu Üye Sayacı (Özellik 1)
-    async function fetchDiscordGuildStats() {
+    // 1. Canlı Sunucu Üye & Çevrimiçi Sayacı + Xentora Canlı Durumu
+    async function fetchDiscordData() {
+      // 1.1 Sunucu davetinden üye sayıları
       try {
         const res = await fetch(`https://discord.com/api/v10/invites/${DISCORD_INVITE}?with_counts=true`);
         if (res.ok) {
@@ -1230,37 +991,79 @@
           }
         }
       } catch (err) {}
+
+      // 1.2 Sunucu Widget'ından Xentora'nın Çevrimiçi / Oyun Durumu
+      try {
+        const widgetRes = await fetch(`https://discord.com/api/guilds/${GUILD_ID}/widget.json`);
+        if (widgetRes.ok) {
+          const wData = await widgetRes.json();
+          if (wData.members && Array.isArray(wData.members)) {
+            const xentora = wData.members.find(m => m.username === 'Xentora' || m.username.toLowerCase().includes('xentora'));
+            if (xentora) {
+              setDiscordStatus(xentora.status || 'online');
+              
+              if (xentora.game && xentora.game.name) {
+                renderGame(xentora.game.name);
+              } else {
+                hideActivityIfNotSpotify();
+              }
+            }
+          }
+        }
+      } catch (err) {}
+
+      // 1.3 Lanyard Entegrasyonu (Spotify / Detaylı Rich Presence)
+      try {
+        const lRes = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
+        if (lRes.ok) {
+          const lData = await lRes.json();
+          if (lData.success && lData.data) {
+            handleLanyardPayload(lData.data);
+          }
+        }
+      } catch (e) {}
     }
-    fetchDiscordGuildStats();
 
-    // 4. Guns.lol Tarzı Canlı Discord Lanyard Entegrasyonu
-    function updateDiscordUI(data) {
-      if (!data) return;
-
+    function setDiscordStatus(status) {
       const statusDot = document.getElementById('statusDot');
-      const status = data.discord_status || 'offline';
       statusDot.className = `status-indicator ${status}`;
-
       if (status === 'online') statusDot.title = 'Çevrimiçi';
       else if (status === 'idle') statusDot.title = 'Boşta';
       else if (status === 'dnd') statusDot.title = 'Rahatsız Etmeyin';
       else statusDot.title = 'Çevrimdışı';
+    }
 
-      // Kullanıcı Bilgisi
-      if (data.discord_user) {
-        const user = data.discord_user;
-        if (user.avatar) {
-          document.getElementById('userAvatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith('a_') ? 'gif' : 'png'}?size=256`;
-        }
-        if (user.global_name) {
-          document.getElementById('globalName').childNodes[0].nodeValue = user.global_name + " ";
-        }
-        if (user.username) {
-          document.getElementById('usernameHandle').textContent = `@${user.username}`;
-        }
+    function renderGame(gameName) {
+      const actBox = document.getElementById('activityBox');
+      const actHeader = document.getElementById('actHeader');
+      const actTitle = document.getElementById('actTitle');
+      const actSub = document.getElementById('actSub');
+      const actBadge = document.getElementById('actBadgeIcon');
+      const spotifyWave = document.getElementById('spotifyWave');
+
+      actBox.className = 'activity-card game';
+      actHeader.textContent = 'BİR OYUN OYNUYOR';
+      actHeader.style.color = '#818cf8';
+      spotifyWave.style.display = 'none';
+      actTitle.textContent = gameName;
+      actSub.textContent = 'Şu an oyunda';
+      actBadge.textContent = '🎮';
+      actBox.style.display = 'flex';
+    }
+
+    function hideActivityIfNotSpotify() {
+      const actBox = document.getElementById('activityBox');
+      if (!actBox.classList.contains('spotify')) {
+        actBox.style.display = 'none';
+      }
+    }
+
+    function handleLanyardPayload(data) {
+      if (!data) return;
+      if (data.discord_status) {
+        setDiscordStatus(data.discord_status);
       }
 
-      // Aktivite & Spotify Kontrolü
       const actBox = document.getElementById('activityBox');
       const actHeader = document.getElementById('actHeader');
       const actTitle = document.getElementById('actTitle');
@@ -1269,7 +1072,7 @@
       const spotifyWave = document.getElementById('spotifyWave');
       const actBadge = document.getElementById('actBadgeIcon');
 
-      // 1. Spotify Dinliyorsa
+      // 1. Spotify
       if (data.listening_to_spotify && data.spotify) {
         actBox.className = 'activity-card spotify';
         actHeader.textContent = 'SPOTIFY DİNLİYOR';
@@ -1279,10 +1082,13 @@
         actSub.textContent = `${data.spotify.artist} • ${data.spotify.album}`;
         actImg.src = data.spotify.album_art_url;
         actBadge.textContent = '🎵';
+        actBox.style.display = 'flex';
+        return;
       }
-      // 2. Bir Oyun veya Uygulama Açıksa
-      else if (data.activities && data.activities.length > 0) {
-        const game = data.activities.find(a => a.type !== 4); // Type 4: custom status
+
+      // 2. Oyun (Lanyard üzerinden)
+      if (data.activities && data.activities.length > 0) {
+        const game = data.activities.find(a => a.type !== 4);
         const custom = data.activities.find(a => a.type === 4);
 
         if (custom && custom.state) {
@@ -1307,77 +1113,45 @@
             } else {
               actImg.src = `https://cdn.discordapp.com/app-assets/${game.application_id}/${game.assets.large_image}.png`;
             }
-          } else {
-            actImg.src = 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png';
           }
-        } else {
-          // Sadece özel durum varsa
-          setDefaultActivity(status);
+          actBox.style.display = 'flex';
+          return;
         }
-      } else {
-        setDefaultActivity(status);
       }
+
+      // Aktif oyun veya müzik yoksa kutuyu gizle
+      actBox.style.display = 'none';
     }
 
-    function setDefaultActivity(status) {
-      const actBox = document.getElementById('activityBox');
-      const actHeader = document.getElementById('actHeader');
-      const actTitle = document.getElementById('actTitle');
-      const actSub = document.getElementById('actSub');
-      const actImg = document.getElementById('actImg');
-      const spotifyWave = document.getElementById('spotifyWave');
-      const actBadge = document.getElementById('actBadgeIcon');
+    // İlk yükleme ve periyodik güncelleme (15 saniyede bir)
+    fetchDiscordData();
+    setInterval(fetchDiscordData, 15000);
 
-      actBox.className = 'activity-card';
-      actHeader.textContent = 'DİSCORD DURUMU';
-      actHeader.style.color = '#38bdf8';
-      spotifyWave.style.display = 'none';
-      actTitle.textContent = status === 'offline' ? 'Şu an Çevrimdışı' : "Discord'da Aktif";
-      actSub.textContent = 'xentora.digital • 7/24 Hizmet';
-      actImg.src = 'logo.png';
-      actBadge.textContent = status === 'offline' ? '⚫' : '🟢';
-    }
-
-    // Lanyard WebSocket Bağlantısı (Anlık Güncelleme)
-    function connectLanyard() {
+    // Lanyard Canlı WebSocket
+    function connectLanyardWs() {
       try {
         const ws = new WebSocket('wss://api.lanyard.rest/socket');
         ws.onopen = () => {
-          ws.send(JSON.stringify({
-            op: 2,
-            d: { subscribe_to_id: DISCORD_USER_ID }
-          }));
+          ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_USER_ID } }));
         };
-
         ws.onmessage = (event) => {
           const packet = JSON.parse(event.data);
           if (packet.t === 'INIT_STATE' || packet.t === 'PRESENCE_UPDATE') {
-            updateDiscordUI(packet.d);
+            handleLanyardPayload(packet.d);
           }
         };
-
-        ws.onclose = () => {
-          setTimeout(connectLanyard, 5000);
-        };
-      } catch (e) {
-        // Fallback REST API
-        fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
-          .then(r => r.json())
-          .then(res => {
-            if (res.success) updateDiscordUI(res.data);
-          })
-          .catch(() => {});
-      }
+        ws.onclose = () => setTimeout(connectLanyardWs, 8000);
+      } catch (e) {}
     }
-    connectLanyard();
+    connectLanyardWs();
 
-    // 5. Smooth Scroll
+    // 2. Smooth Scroll
     document.getElementById('exploreBtn').addEventListener('click', function(e) {
       e.preventDefault();
       document.getElementById('magazalar').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // 6. 3D Tilt Kart Efekti + Spotlight Feneri
+    // 3. 3D Tilt Kart Efekti + Spotlight Feneri
     const cards = document.querySelectorAll('.store-card');
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
@@ -1399,7 +1173,7 @@
       });
     });
 
-    // 7. Yerel Arka Plan Müziği (HTML5 Audio)
+    // 4. Yerel Arka Plan Müziği (HTML5 Audio)
     const audio = document.getElementById('bgAudio');
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = document.getElementById('musicIcon');
