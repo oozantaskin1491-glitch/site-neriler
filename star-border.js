@@ -276,6 +276,17 @@
     const frame = now => {
       raf = 0;
       if (!alive) return;
+      if (state.width === 0 || state.height === 0) {
+        state.width = root.offsetWidth;
+        state.height = root.offsetHeight;
+        if (state.width > 0 && state.height > 0) {
+          canvas.width = Math.max(1, Math.round((state.width + BLEED * 2) * state.dpr));
+          canvas.height = Math.max(1, Math.round((state.height + BLEED * 2) * state.dpr));
+        } else {
+          raf = requestAnimationFrame(frame);
+          return;
+        }
+      }
       const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
       last = now;
       state.time += dt;
@@ -304,13 +315,13 @@
 
       draw(shape);
 
-      if (state.visible && (Math.abs(state.motion) > 0.05 || pulses.length > 0 || state.lap >= 0 || state.hovered)) {
+      if (state.visible && (Math.abs(state.motion) > 0.05 || cruise !== 0 || pulses.length > 0 || state.lap >= 0 || state.hovered)) {
         raf = requestAnimationFrame(frame);
       }
     };
 
     const wake = () => {
-      if (raf || !alive || !state.visible) return;
+      if (raf || !alive) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
