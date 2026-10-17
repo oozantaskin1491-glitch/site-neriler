@@ -115,24 +115,26 @@
       filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.45));
     }
 
+    /* Tıklama ve Odaklanma Çerçevesini Temizleme (Kare/border hatasını engeller) */
+    .store-card,
+    .store-card:focus,
+    .store-card:active,
+    .store-card:focus-visible,
+    .card-wrap,
+    a,
+    button {
+      outline: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
     /* =========================================
        REACT BITS: STAR BORDER ANIMASYONU
+       (Sadece Butonlar: Keşfet, Discord, DM)
        ========================================= */
-    .star-border:not(.music-pill) {
+    .star-border {
       position: relative !important;
       isolation: isolate !important;
       overflow: visible !important;
-    }
-
-    .star-border.music-pill {
-      position: fixed !important;
-      bottom: 24px !important;
-      right: 24px !important;
-      left: auto !important;
-      top: auto !important;
-      isolation: isolate !important;
-      overflow: visible !important;
-      z-index: 1000 !important;
     }
 
     .star-border::before {
@@ -1341,10 +1343,10 @@
       console.warn('ClickSpark init error:', e);
     }
 
-    // 3. StarBorder - Resimdeki Tüm Butonlara ve Kartlara (React Bits)
+    // 3. StarBorder - Sadece Belirlenen Butonlarda (Keşfet, Discord Topluluğu, DM)
     try {
       if (typeof window.initStarBorders === 'function') {
-        window.initStarBorders('.btn-primary, .btn-secondary, .store-card, .arrow-btn, .mini-btn.discord-dm, .music-pill', {
+        window.initStarBorders('.btn-primary, .btn-secondary, .mini-btn.discord-dm', {
           color: '#ffffff',
           trailColor: '#ffffff',
           duration: 4,

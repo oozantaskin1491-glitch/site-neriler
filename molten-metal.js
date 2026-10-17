@@ -490,6 +490,12 @@ void main() {
 
     const onDown = event => {
       if (!s.flareOnClick || event.button !== 0) return;
+      if (
+        event.target instanceof Element &&
+        event.target.closest('a, button, input, textarea, select, label, [role="button"], .store-card, .card-wrap, .music-pill')
+      ) {
+        return;
+      }
       const pt = local(event);
       if (!pt.inside) return;
       state.flares.push({ at: [pt.x, pt.y], time: state.clock });
